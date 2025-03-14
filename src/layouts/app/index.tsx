@@ -1,0 +1,18 @@
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Outlet } from "react-router";
+import AppSidebar from "./app-sidebar";
+import AppHeader from "./app-header";
+
+export default function AppLayout() {
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset className="relative">
+        <AppHeader />
+        <div className="p-4 mt-10">
+          <Outlet />
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
+  );
+}
