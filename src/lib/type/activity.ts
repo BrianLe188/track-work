@@ -3,7 +3,8 @@ export interface IActivity {
   user: string;
   avatar: string;
   action: string;
-  time: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type Activities = IActivity[];

@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Clock } from "lucide-react";
 import { useHomeStore } from "../../store";
+import { timeAgo } from "@/lib/utils";
 
 export default function Overview() {
   const { activities, tasks, members } = useHomeStore();
@@ -33,7 +34,8 @@ export default function Overview() {
                     {activity.action}
                   </p>
                   <p className="text-sm text-muted-foreground flex items-center">
-                    <Clock className="mr-1 h-3 w-3" /> {activity.time}
+                    <Clock className="mr-1 h-3 w-3" />
+                    {timeAgo("en-US", activity.updatedAt)}
                   </p>
                 </div>
               </div>

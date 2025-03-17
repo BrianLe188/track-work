@@ -15,4 +15,16 @@ export interface IProject {
   starred: boolean;
 }
 
+export interface ICreateProject {
+  name: string;
+  description: string;
+  category: string;
+  startDate: Date;
+  endDate?: Date;
+  teamMembers: [];
+  tags: [];
+  isPublic: boolean;
+  repositoryUrl: string;
+}
+
 export type Projects = IProject[];

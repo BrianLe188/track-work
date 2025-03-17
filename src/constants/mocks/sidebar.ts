@@ -16,7 +16,7 @@ const MOCK_SIDEBAR_DATA = {
   navMain: [
     {
       title: "Work Management",
-      url: "#",
+      url: "/",
       icon: SquareTerminal,
       isActive: true,
       items: [
@@ -36,7 +36,7 @@ const MOCK_SIDEBAR_DATA = {
     },
     {
       title: "Time Tracking",
-      url: "#",
+      url: "/",
       icon: Bot,
       items: [
         {
@@ -51,7 +51,7 @@ const MOCK_SIDEBAR_DATA = {
     },
     {
       title: "Communication",
-      url: "#",
+      url: "/communication",
       icon: MessageCircleReply,
       items: [
         {
@@ -66,7 +66,7 @@ const MOCK_SIDEBAR_DATA = {
     },
     {
       title: "Documentation",
-      url: "#",
+      url: "/",
       icon: BookOpen,
       items: [
         {
@@ -89,7 +89,7 @@ const MOCK_SIDEBAR_DATA = {
     },
     {
       title: "Settings",
-      url: "#",
+      url: "/",
       icon: Settings2,
       items: [
         {

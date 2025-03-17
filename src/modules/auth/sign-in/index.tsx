@@ -24,7 +24,6 @@ export default function SignIn() {
         onSetAuth(res);
         navigate("/");
       }
-      toast(JSON.stringify(res));
     } catch (error) {
       console.error("Form submission error", error);
       toast.error("Failed to submit the form. Please try again.");

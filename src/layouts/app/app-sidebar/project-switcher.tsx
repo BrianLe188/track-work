@@ -1,4 +1,3 @@
-import * as React from "react";
 import { ChevronsUpDown, Frame, Plus } from "lucide-react";
 import {
   DropdownMenu,
@@ -17,14 +16,20 @@ import {
 } from "@/components/ui/sidebar";
 import { Projects } from "@/lib/type/project";
 import { useProjectStore } from "@/stores/projects";
+import { useNavigate } from "react-router";
+import ROUTE_PATH from "@/constants/routes";
 
 export default function ProjectSwitcher({ projects }: { projects: Projects }) {
   const { isMobile } = useSidebar();
   const { targetProject: activeProj, onSetTargetProject } = useProjectStore();
+  const navigate = useNavigate();
 
   if (!activeProj) {
     return null;
   }
+
+  const handleNavigateToCreateProject = () =>
+    navigate(ROUTE_PATH.ROOT.PROJECTS.CREATE_PROJECT);
 
   return (
     <SidebarMenu>
@@ -70,7 +75,10 @@ export default function ProjectSwitcher({ projects }: { projects: Projects }) {
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="gap-2 p-2">
+            <DropdownMenuItem
+              className="gap-2 p-2"
+              onClick={handleNavigateToCreateProject}
+            >
               <div className="flex size-6 items-center justify-center rounded-md border bg-background">
                 <Plus className="size-4" />
               </div>

@@ -2,17 +2,20 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Outlet } from "react-router";
 import AppSidebar from "./app-sidebar";
 import AppHeader from "./app-header";
+// import withAuth from "@/hooks/with-auth";
 
-export default function AppLayout() {
+function AppLayout() {
   return (
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset className="relative">
         <AppHeader />
-        <div className="p-4 mt-10">
+        <div className="p-4">
           <Outlet />
         </div>
       </SidebarInset>
     </SidebarProvider>
   );
 }
+
+export default AppLayout;

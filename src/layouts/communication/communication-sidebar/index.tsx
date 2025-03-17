@@ -19,6 +19,7 @@ import { Label } from "@/components/ui/label";
 import { useAuthStore } from "@/stores/auth";
 import MOCK_SIDEBAR_DATA from "@/constants/mocks/sidebar";
 import { MOCK_MAILS } from "@/constants/mocks/communicates";
+import { timeAgo } from "@/lib/utils";
 
 export default function CommunicationSidebar({
   ...props
@@ -122,7 +123,9 @@ export default function CommunicationSidebar({
                 >
                   <div className="flex w-full items-center gap-2">
                     <span>{mail.name}</span>{" "}
-                    {/* <span className="ml-auto text-xs">{mail.date}</span> */}
+                    <span className="ml-auto text-xs">
+                      {timeAgo("en-US", mail.date)}
+                    </span>
                   </div>
                   <span className="font-medium">{mail.subject}</span>
                   <span className="line-clamp-2 w-[260px] whitespace-break-spaces text-xs">

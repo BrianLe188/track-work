@@ -1,9 +1,9 @@
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Outlet } from "react-router";
-import CommunicationHeader from "./communication-header";
 import CommunicationSidebar from "./communication-sidebar";
+import withAuth from "@/hooks/with-auth";
 
-export default function CommunicationLayout() {
+function CommunicationLayout() {
   return (
     <SidebarProvider
       style={
@@ -13,12 +13,13 @@ export default function CommunicationLayout() {
       }
     >
       <CommunicationSidebar />
-      <SidebarInset className="relative">
-        <CommunicationHeader />
-        <div className="p-4 mt-10">
+      <SidebarInset>
+        <div className="flex h-screen w-full overflow-hidden bg-background">
           <Outlet />
         </div>
       </SidebarInset>
     </SidebarProvider>
   );
 }
+
+export default withAuth(CommunicationLayout);

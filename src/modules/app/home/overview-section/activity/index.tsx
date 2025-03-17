@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Clock } from "lucide-react";
 import { useHomeStore } from "../../store";
 import CustomPagination from "@/components/custom-pagination";
+import { timeAgo } from "@/lib/utils";
 
 export default function Activity() {
   const { activities } = useHomeStore();
@@ -29,7 +30,8 @@ export default function Activity() {
                   {activity.action}
                 </p>
                 <p className="text-sm text-muted-foreground flex items-center">
-                  <Clock className="mr-1 h-3 w-3" /> {activity.time}
+                  <Clock className="mr-1 h-3 w-3" />
+                  {timeAgo("en-US", activity.updatedAt)}
                 </p>
               </div>
             </div>
