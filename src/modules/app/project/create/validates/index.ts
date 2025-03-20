@@ -7,6 +7,7 @@ export const createProjDefaultValues: ICreateProject = {
   category: "",
   startDate: new Date(),
   endDate: undefined,
+  priority: "",
   teamMembers: [],
   tags: [],
   isPublic: false,

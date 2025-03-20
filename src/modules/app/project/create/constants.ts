@@ -52,15 +52,6 @@ export const CREATE_STEPS = [
   },
 ];
 
-export const PROJECT_CATEGORIES = [
-  { _id: "web", name: "Web Development" },
-  { _id: "mobile", name: "Mobile App" },
-  { _id: "design", name: "Design" },
-  { _id: "marketing", name: "Marketing" },
-  { _id: "internal", name: "Internal Tool" },
-  { _id: "research", name: "Research" },
-];
-
 export const TEAM_MEMBERS = [
   {
     _id: "1",
@@ -111,16 +102,4 @@ export const TEAM_MEMBERS = [
     avatar: "/placeholder.svg?height=40&width=40",
     department: "Engineering",
   },
-];
-
-export const PROJECT_TAGS = [
-  { _id: "frontend", name: "Frontend" },
-  { _id: "backend", name: "Backend" },
-  { _id: "ui", name: "UI/UX" },
-  { _id: "api", name: "API" },
-  { _id: "database", name: "Database" },
-  { _id: "devops", name: "DevOps" },
-  { _id: "content", name: "Content" },
-  { _id: "seo", name: "SEO" },
-  { _id: "analytics", name: "Analytics" },
 ];

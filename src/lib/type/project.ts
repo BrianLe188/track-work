@@ -8,6 +8,9 @@ export interface IProject {
   description?: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface IProjectTarget extends IProject {
   progress: number;
   activeMembers: number;
   completedTasks: number;
@@ -15,16 +18,44 @@ export interface IProject {
   starred: boolean;
 }
 
-export interface ICreateProject {
-  name: string;
-  description: string;
+export interface ICreateProject extends Omit<IProject, '_id' | 'icon' | 'createdAt' | 'updatedAt'>{
   category: string;
   startDate: Date;
   endDate?: Date;
-  teamMembers: [];
-  tags: [];
-  isPublic: boolean;
-  repositoryUrl: string;
+  priority: string;
+  teamMembers: string[];
+  tags?: string[];
+  isPublic?: boolean;
+  repositoryUrl?: string;
 }
 
 export type Projects = IProject[];
+
+export interface IProjectCategory {
+  _id: string;
+  name: string;
+  key: string;
+}
+
+export type ProjectCategories = IProjectCategory[];
+
+export interface IProjectPriority {
+  _id: string;
+  name: string;
+}
+
+export type ProjectPriorities = IProjectPriority[];
+
+export interface IProjectStatus {
+  _id: string;
+  name: string;
+}
+
+export type ProjectStatuses = IProjectStatus[];
+
+export interface IProjectTag {
+  _id: string;
+  name: string;
+}
+
+export type ProjectTags = IProjectTag[];

@@ -17,14 +17,16 @@ import {
 import { UseFormReturn } from "react-hook-form";
 import { CreateProjFormType } from "../validates";
 import { Textarea } from "@/components/ui/textarea";
-import { PROJECT_CATEGORIES } from "../constants";
 import { memo } from "react";
+import { useAppStore } from "@/stores/app";
 
 interface IProps {
   form: UseFormReturn<CreateProjFormType, any, undefined>;
 }
 
 const BasicStep = memo(({ form }: IProps) => {
+  const { projectCategories, projectPriorities } = useAppStore();
+
   return (
     <>
       <FormField
@@ -79,7 +81,7 @@ const BasicStep = memo(({ form }: IProps) => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {PROJECT_CATEGORIES.map((category) => (
+                  {projectCategories.map((category) => (
                     <SelectItem key={category._id} value={category._id}>
                       {category.name}
                     </SelectItem>
@@ -104,10 +106,11 @@ const BasicStep = memo(({ form }: IProps) => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="low">Low</SelectItem>
-                  <SelectItem value="medium">Medium</SelectItem>
-                  <SelectItem value="high">High</SelectItem>
-                  <SelectItem value="urgent">Urgent</SelectItem>
+                  {projectPriorities.map((priority) => (
+                    <SelectItem key={priority._id} value={priority._id}>
+                      {priority.name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
               <FormMessage />

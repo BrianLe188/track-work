@@ -1,4 +1,4 @@
-import { ChevronsUpDown, Frame, Plus } from "lucide-react";
+import { AlignJustify, ChevronsUpDown, Frame, Plus } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,6 +30,9 @@ export default function ProjectSwitcher({ projects }: { projects: Projects }) {
 
   const handleNavigateToCreateProject = () =>
     navigate(ROUTE_PATH.ROOT.PROJECTS.CREATE_PROJECT);
+
+  const handleNavigateToManageProject = () =>
+    navigate(ROUTE_PATH.ROOT.PROJECTS.INDEX);
 
   return (
     <SidebarMenu>
@@ -84,6 +87,17 @@ export default function ProjectSwitcher({ projects }: { projects: Projects }) {
               </div>
               <div className="font-medium text-muted-foreground">
                 Add project
+              </div>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className="gap-2 p-2"
+              onClick={handleNavigateToManageProject}
+            >
+              <div className="flex size-6 items-center justify-center rounded-md border bg-background">
+                <AlignJustify className="size-4" />
+              </div>
+              <div className="font-medium text-muted-foreground">
+                Project management
               </div>
             </DropdownMenuItem>
           </DropdownMenuContent>

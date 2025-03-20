@@ -2,7 +2,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Outlet } from "react-router";
 import AppSidebar from "./app-sidebar";
 import AppHeader from "./app-header";
-// import withAuth from "@/hooks/with-auth";
+import withAuth from "@/hooks/with-auth";
 
 function AppLayout() {
   return (
@@ -18,4 +18,4 @@ function AppLayout() {
   );
 }
 
-export default AppLayout;
+export default withAuth(AppLayout, false);

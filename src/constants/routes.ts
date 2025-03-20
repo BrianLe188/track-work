@@ -5,6 +5,9 @@ const ROUTE_PATH = {
       INDEX: "/projects",
       CREATE_PROJECT: "/projects/create",
     },
+    TRACKING: {
+      INDEX: "/tracking",
+    },
   },
   AUTH: {
     SIGN_IN: "/sign-in",

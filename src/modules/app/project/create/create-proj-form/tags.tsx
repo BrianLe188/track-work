@@ -26,7 +26,7 @@ import { Tag, ChevronDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Command } from "@/components/ui/command";
-import { PROJECT_TAGS } from "../constants";
+import { useAppStore } from "@/stores/app";
 
 interface IProps {
   values: any[];
@@ -35,7 +35,7 @@ interface IProps {
 }
 
 const TagStep = memo(({ values, form, onToggleTag }: IProps) => {
-  const projectTags = PROJECT_TAGS;
+  const { projectTags } = useAppStore();
 
   return (
     <FormField

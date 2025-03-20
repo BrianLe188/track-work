@@ -9,8 +9,69 @@ struct AuthState {
     token: Arc<Mutex<Option<String>>>,
 }
 
+#[derive(serde::Deserialize, serde::Serialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct CreateProjectPayload {
+    name: String,
+    thumbnail: Option<String>,
+    description: String,
+    category: Option<String>,
+    start_date: String,
+    end_date: Option<String>,
+    priority: String,
+    team_members: Vec<String>,
+    tags: Option<Vec<String>>,
+    is_public: Option<bool>,
+    repository_url: Option<String>,
+}
+
 const STORE_PATH: &str = "store.json";
 const API_URL: &str = "http://localhost:3000";
+
+#[tauri::command]
+fn create_project(
+    app: tauri::AppHandle,
+    state: State<AuthState>,
+    payload: CreateProjectPayload,
+) -> Result<Value, String> {
+    let client = Client::new();
+
+    let token = {
+        let token_lock = state.token.lock().unwrap();
+        if let Some(token) = &*token_lock {
+            Some(token.clone())
+        } else {
+            let store = app
+                .store(STORE_PATH)
+                .map_err(|e| format!("Store error: {}", e))?;
+            store
+                .get("token")
+                .and_then(|v| v.as_str().map(|s| s.to_string()))
+        }
+    };
+
+    let Some(token) = token else {
+        return Err("No token found".to_string());
+    };
+
+    let response = client
+        .post(format!("{}/projects", API_URL))
+        .json(&payload)
+        .header(AUTHORIZATION, format!("Bearer {}", token))
+        .send()
+        .map_err(|e| format!("Failed to send request: {}", e))?;
+
+    if response.status().is_success() {
+        let json: serde_json::Value = response
+            .json()
+            .map_err(|e| format!("Failed to parse JSON: {}", e))?;
+        let proj = json["project"].clone();
+
+        Ok(proj)
+    } else {
+        Err("Something went's wrong while create project.".to_string())
+    }
+}
 
 #[tauri::command]
 fn check_auth(app: tauri::AppHandle, state: State<AuthState>) -> Result<Value, String> {
@@ -106,7 +167,11 @@ pub fn run() {
         .manage(auth_state)
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(tauri_plugin_opener::init())
-        .invoke_handler(tauri::generate_handler![sign_in, check_auth])
+        .invoke_handler(tauri::generate_handler![
+            sign_in,
+            check_auth,
+            create_project
+        ])
         .setup(|app| {
             let store = app.store(STORE_PATH)?;
             let handle = app.handle();

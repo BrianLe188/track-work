@@ -11,6 +11,7 @@ import AuthEvent from "@/events/auth";
 import SignInForm from "./sign-in-form";
 import { useNavigate } from "react-router";
 import { useAuthStore } from "@/stores/auth";
+import NOTIFY_MESSAGE from "@/constants/notify";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -23,10 +24,10 @@ export default function SignIn() {
       if (res) {
         onSetAuth(res);
         navigate("/");
+        toast.success(NOTIFY_MESSAGE.SIGN_IN_SUCCESS);
       }
     } catch (error) {
-      console.error("Form submission error", error);
-      toast.error("Failed to submit the form. Please try again.");
+      toast.error(NOTIFY_MESSAGE.FAILED_TO_SUBMIT);
     }
   }
 

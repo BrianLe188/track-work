@@ -2,24 +2,27 @@ import { memo } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { CreateProjFormType } from "../validates";
 import { format } from "date-fns";
-import { PROJECT_CATEGORIES, PROJECT_TAGS, TEAM_MEMBERS } from "../constants";
+import { TEAM_MEMBERS } from "../constants";
 import { Badge } from "@/components/ui/badge";
+import { useAppStore } from "@/stores/app";
 
 interface IProps {
   form: UseFormReturn<CreateProjFormType, any, undefined>;
 }
 
 const ReviewTab = memo(({ form }: IProps) => {
+  const { projectCategories, projectTags } = useAppStore();
+
   const getCategoryName = (categoryId: string) => {
     return (
-      PROJECT_CATEGORIES.find((cat) => cat._id === categoryId)?.name ||
+      projectCategories.find((cat) => cat._id === categoryId)?.name ||
       categoryId
     );
   };
 
   const getTagNames = (tagIds: string[]) => {
     return tagIds.map(
-      (id) => PROJECT_TAGS.find((tag) => tag._id === id)?.name || id,
+      (id) => projectTags.find((tag) => tag._id === id)?.name || id,
     );
   };
 
