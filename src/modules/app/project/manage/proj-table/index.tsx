@@ -6,6 +6,7 @@ import { useManageProjectStore } from "../store";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import CustomPagination from "@/components/custom-pagination";
+import { useShallow } from "zustand/react/shallow";
 
 export default function ProjectTable() {
   const {
@@ -15,7 +16,7 @@ export default function ProjectTable() {
     onSelectVisibleColumns,
     onSelectAllProjects,
     onResetSelectedProjects,
-  } = useManageProjectStore();
+  } = useManageProjectStore(useShallow((state) => state));
   const [filter, setFilter] = useState<IFilter>({
     search: "",
     category: "",

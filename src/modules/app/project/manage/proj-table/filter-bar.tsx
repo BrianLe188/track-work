@@ -20,6 +20,7 @@ import { ChangeEvent, memo, useCallback } from "react";
 import { IFilter } from "../type";
 import { useAppStore } from "@/stores/app";
 import debounce from "debounce";
+import { useShallow } from "zustand/react/shallow";
 
 interface IProps {
   filter: IFilter;
@@ -36,7 +37,7 @@ const FilterBar = memo(
     onToggleVisibleColumns,
   }: IProps) => {
     const { projectCategories, projectPriorities, projectStatuses } =
-      useAppStore();
+      useAppStore(useShallow((state) => state));
 
     const handleDebounceChangeSearch = useCallback(
       debounce(

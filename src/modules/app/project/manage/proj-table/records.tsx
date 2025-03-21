@@ -24,6 +24,7 @@ import { Link } from "react-router";
 import { toast } from "sonner";
 import { useManageProjectStore } from "../store";
 import { Badge } from "@/components/ui/badge";
+import { useShallow } from "zustand/react/shallow";
 
 interface IProps {}
 
@@ -35,7 +36,7 @@ const Records = memo(({}: IProps) => {
     onSelectedProjects,
     onSelectAllProjects,
     onResetSelectedProjects,
-  } = useManageProjectStore();
+  } = useManageProjectStore(useShallow((state) => state));
 
   const handleToggleSelectAll = () => {
     if (selectedProjects.length === projects.length) {

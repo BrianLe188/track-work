@@ -3,6 +3,8 @@ export interface ITask {
   title: string;
   status: string;
   dueDate: string;
+  priority: string;
+  description: string;
 }
 
 export type Tasks = ITask[];

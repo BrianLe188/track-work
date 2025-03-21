@@ -6,4 +6,6 @@ export const MOCK_TASKS: Tasks = Array.from(Array(10).keys()).map(() => ({
   title: faker.lorem.words(),
   status: faker.string.fromCharacters(["completed", "in-progress", "todo"]),
   dueDate: faker.date.past().toString(),
+  priority: faker.string.fromCharacters(["high", "medium", "low"]),
+  description: faker.lorem.lines(),
 }));

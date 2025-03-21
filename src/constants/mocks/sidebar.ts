@@ -36,12 +36,12 @@ const MOCK_SIDEBAR_DATA = {
     },
     {
       title: "Time Tracking",
-      url: "/",
+      url: "/tracking",
       icon: Bot,
       items: [
         {
           title: "Check-in/Check-out",
-          url: "#",
+          url: "/tracking",
         },
         {
           title: "Work History",
