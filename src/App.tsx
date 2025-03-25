@@ -10,6 +10,7 @@ import ChatScreen from "./screens/app/chat";
 import ManageProjectScreen from "./screens/app/project/manage";
 import CreateProjectScreen from "./screens/app/project/create";
 import TrackingScreen from "./screens/app/tracking";
+import ScreenshotPopupScreen from "./screens/screenshot-popup";
 
 const App = () => {
   return (
@@ -36,6 +37,10 @@ const App = () => {
       >
         <Route index element={<ChatScreen />} />
       </Route>
+      <Route
+        path={ROUTE_PATH.SCREENSHOT_POPUP.INDEX}
+        element={<ScreenshotPopupScreen />}
+      />
     </Routes>
   );
 };

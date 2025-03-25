@@ -12,9 +12,19 @@
   "app": {
     "windows": [
       {
-        "title": "track-work",
+        "label": "main",
+        "title": "Track Work",
         "width": 1000,
         "height": 800
+      },
+      {
+        "label": "screenshot_popup",
+        "title": "Screenshot",
+        "url": "/screenshot-popup",
+        "width": 500,
+        "height": 500,
+        "resizable": false,
+        "decorations": false
       }
     ],
     "security": {

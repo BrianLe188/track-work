@@ -15,6 +15,9 @@ const ROUTE_PATH = {
   COMMUNICATION: {
     INDEX: "/communication",
   },
+  SCREENSHOT_POPUP: {
+    INDEX: "/screenshot-popup",
+  },
 };
 
 export default ROUTE_PATH;

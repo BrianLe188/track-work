@@ -18,6 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import { formatTime } from "@/lib/utils";
 import SelectTask from "./select-task";
 import { useShallow } from "zustand/react/shallow";
+import TrackingEvent from "@/events/tracking";
 
 const Timer = memo(() => {
   const {
@@ -100,6 +101,8 @@ const Timer = memo(() => {
     toast(
       `Time tracking started: Started tracking ${selectedTaskIds.length} task(s) at ${format(new Date(), "h:mm a")}`,
     );
+
+    TrackingEvent.captureScreen();
   };
 
   const handleStopTracking = () => {
