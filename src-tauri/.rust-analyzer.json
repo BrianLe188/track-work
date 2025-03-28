@@ -1,0 +1,5 @@
+{
+  "procMacro": { "enable": false },
+  "cargo": { "buildScripts": { "enable": false } },
+  "checkOnSave": { "command": "clippy" }
+}

@@ -6,13 +6,9 @@ import {
   SquareTerminal,
 } from "lucide-react";
 import { MOCK_PROJECTS } from "./projects";
+import { ISidebar } from "@/lib/type/sidebar";
 
-const MOCK_SIDEBAR_DATA = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
+const MOCK_SIDEBAR_DATA: ISidebar = {
   navMain: [
     {
       title: "Work Management",

@@ -41,13 +41,13 @@ export default function SignIn() {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          <SignInForm onSubmit={onSubmit} />
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
             <a href="#" className="underline">
               Sign up
             </a>
           </div>
-          <SignInForm onSubmit={onSubmit} />
         </CardContent>
       </Card>
     </div>

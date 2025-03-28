@@ -8,14 +8,14 @@ import {
 import NavMain from "./nav-main";
 import NavProjects from "./nav-projects";
 import ProjectSwitcher from "./project-switcher";
-import MOCK_SIDEBAR_DATA from "@/constants/mocks/sidebar";
 import NavUser from "@/components/layout/nav-user";
 import { useAuthStore } from "@/stores/auth";
+import { useAppStore } from "@/stores/app";
 
 export default function AppSidebar({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
-  const data = MOCK_SIDEBAR_DATA;
+  const data = useAppStore((state) => state.sidebar);
 
   const { auth } = useAuthStore();
 

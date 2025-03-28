@@ -16,20 +16,39 @@
         "title": "Track Work",
         "width": 1000,
         "height": 800
-      },
-      {
-        "label": "screenshot_popup",
-        "title": "Screenshot",
-        "url": "/screenshot-popup",
-        "width": 500,
-        "height": 500,
-        "resizable": false,
-        "decorations": false
       }
     ],
     "security": {
-      "csp": null
-    }
+      "csp": null,
+      "capabilities": [
+        {
+          "identifier": "listen-event-capability",
+          "description": "",
+          "windows": ["main", "screenshot_popup"],
+          "permissions": [
+            "core:event:allow-listen",
+            "core:event:allow-unlisten"
+          ]
+        },
+        {
+          "identifier": "main-capability",
+          "description": "",
+          "windows": ["main"],
+          "permissions": [
+            "core:window:allow-create",
+            "core:event:allow-emit",
+            "core:event:allow-emit-to"
+          ]
+        },
+        {
+          "identifier": "popup-capability",
+          "description": "My application capability used for all windows",
+          "windows": ["screenshot_popup"],
+          "permissions": ["core:window:allow-close"]
+        }
+      ]
+    },
+    "withGlobalTauri": true
   },
   "bundle": {
     "active": true,

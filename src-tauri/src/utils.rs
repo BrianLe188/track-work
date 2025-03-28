@@ -6,7 +6,7 @@ where
     F: Fn() + Send + 'static,
 {
     task::spawn(async move {
-        let mut interval = time::interval(Duration::from_secs(2));
+        let mut interval = time::interval(Duration::from_secs(10));
 
         loop {
             interval.tick().await;
