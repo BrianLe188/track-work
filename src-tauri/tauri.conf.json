@@ -14,7 +14,7 @@
       {
         "label": "main",
         "title": "Track Work",
-        "width": 1000,
+        "width": 1200,
         "height": 800
       }
     ],
@@ -31,20 +31,22 @@
           ]
         },
         {
+          "identifier": "emit-event-capability",
+          "description": "",
+          "windows": ["main", "screenshot_popup"],
+          "permissions": ["core:event:allow-emit", "core:event:allow-emit-to"]
+        },
+        {
           "identifier": "main-capability",
           "description": "",
           "windows": ["main"],
-          "permissions": [
-            "core:window:allow-create",
-            "core:event:allow-emit",
-            "core:event:allow-emit-to"
-          ]
+          "permissions": ["core:window:allow-create"]
         },
         {
           "identifier": "popup-capability",
           "description": "My application capability used for all windows",
           "windows": ["screenshot_popup"],
-          "permissions": ["core:window:allow-close"]
+          "permissions": ["core:window:allow-close", "core:window:allow-hide"]
         }
       ]
     },

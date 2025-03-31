@@ -126,6 +126,8 @@ const Timer = memo(() => {
     toast.success(
       `Time tracking stopped: You tracked ${formatTime(duration)} on ${currentEntry.taskIds.length} task(s)"`,
     );
+
+    TrackingEvent.stopCaptureScreen();
   };
 
   const handleToggleTask = useCallback((taskId: string) => {

@@ -6,6 +6,7 @@ const EVENT_NAME = {
   CAPTURE_SCREEN: "capture_screen",
   STOP_CAPTURE_SCREEN: "stop_capture_screen",
   SHOW_TRACKING_SCREENSHOT: "show_tracking_screenshot",
+  HIDE_WINDOW_SCREENSHOT_POPUP: "hide_window_screenshot_popup",
 };
 
 export default EVENT_NAME;

@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import EVENT_NAME from "@/constants/event-name";
-import { ITrackingImage } from "@/lib/type/tracking";
+import { HideWindowScreenshotPopupKey, ITrackingImage } from "@/lib/type/tracking";
 import { listen } from "@tauri-apps/api/event";
 import { Trash } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Window } from "@tauri-apps/api/window";
 import { Skeleton } from "@/components/ui/skeleton";
+import TrackingEvent from "@/events/tracking";
 
 export default function ScreenshotPopup() {
   const [image, setImage] = useState<ITrackingImage | null>(null);
@@ -30,7 +31,7 @@ export default function ScreenshotPopup() {
             const newProgress = prev - 10;
             if (newProgress <= 0) {
               clearInterval(timer);
-              handleCloseWindow();
+              handleCloseWindow('accept_image');
               return 0;
             }
             return newProgress;
@@ -47,9 +48,15 @@ export default function ScreenshotPopup() {
     };
   }, []);
 
-  const handleCloseWindow = async () => {
+  const handleReset = () => {
+    setImage(null);
+    setProgress(100);
+  };
+
+  const handleCloseWindow = async (key: HideWindowScreenshotPopupKey) => {
     const win = Window.getCurrent();
-    await win.hide();
+    handleReset();
+    TrackingEvent.hideWindowScreenshotPopup(key)
   };
 
   return (
@@ -61,7 +68,7 @@ export default function ScreenshotPopup() {
       )}
       <div className="w-full flex items-center gap-1 pl-1">
         <Progress value={progress} className="flex-1" />
-        <Button size="icon" variant="ghost" onClick={handleCloseWindow}>
+        <Button size="icon" variant="ghost" onClick={() => handleCloseWindow('remove_image')}>
           <Trash />
         </Button>
       </div>

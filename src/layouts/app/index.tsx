@@ -18,4 +18,4 @@ function AppLayout() {
   );
 }
 
-export default withAuth(AppLayout, false);
+export default withAuth(AppLayout, true);
