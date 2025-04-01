@@ -40,7 +40,7 @@
           "identifier": "main-capability",
           "description": "",
           "windows": ["main"],
-          "permissions": ["core:window:allow-create"]
+          "permissions": ["core:window:allow-create", "store:default"]
         },
         {
           "identifier": "popup-capability",

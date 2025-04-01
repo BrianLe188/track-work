@@ -31,3 +31,7 @@ export function formatTime(seconds: number) {
     secs.toString().padStart(2, "0"),
   ].join(":");
 }
+
+export function sleep(seconds: number) {
+  return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+}

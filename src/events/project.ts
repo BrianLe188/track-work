@@ -3,7 +3,7 @@ import { ICreateProject } from "@/lib/type/project";
 import { invoke } from "@tauri-apps/api/core";
 
 async function createProject(payload: ICreateProject) {
-  const res = await invoke(EVENT_NAME.CREATE_PROJECT, { payload });
+  const res = await invoke(EVENT_NAME.PROJECT.CREATE_PROJECT, { payload });
   return res;
 }
 

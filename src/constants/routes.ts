@@ -18,6 +18,7 @@ const ROUTE_PATH = {
   SCREENSHOT_POPUP: {
     INDEX: "/screenshot-popup",
   },
+  SPLASH: "/splashscreen",
 };
 
 export default ROUTE_PATH;

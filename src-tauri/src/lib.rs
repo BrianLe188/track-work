@@ -2,20 +2,14 @@ mod handlers;
 mod state;
 mod utils;
 
-use handlers::*;
 use handlers::{
-    handle_capture_screen, handle_logout, handle_stop_capture_screen, CaptureScreenPayload,
-    HideWindowScreenshotPopupPayload, STORE_PATH,
+    check_auth, create_project, handle_capture_screen, handle_logout, handle_stop_capture_screen,
+    sign_in, CaptureScreenPayload, HideWindowScreenshotPopupPayload, STORE_PATH,
 };
 use state::{AuthState, TrackingState};
 use std::sync::{Arc, Mutex};
 use tauri::{App, AppHandle, Listener, Manager, WebviewUrl, WebviewWindowBuilder, Wry};
 use tauri_plugin_store::{Store, StoreExt};
-
-#[tauri::command]
-fn log_message(message: String) {
-    println!("{}", message);
-}
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -28,12 +22,12 @@ pub fn run() {
     };
 
     tauri::Builder::default()
+        .plugin(tauri_plugin_http::init())
         .manage(auth_state)
         .manage(tracking_state)
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
-            log_message,
             sign_in,
             check_auth,
             create_project

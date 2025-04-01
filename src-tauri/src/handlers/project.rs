@@ -1,9 +1,9 @@
-use serde::{Deserialize, Serialize};
+use super::auth::{get_token, API_URL};
 use crate::state::AuthState;
-use reqwest::{blocking::Client, header::AUTHORIZATION};
-use tauri::State;
+use serde::{Deserialize, Serialize};
 use serde_json::Value;
-use super::auth::{API_URL, get_token};
+use tauri::State;
+use tauri_plugin_http::reqwest::{blocking::Client, header::AUTHORIZATION};
 
 #[derive(Deserialize, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]

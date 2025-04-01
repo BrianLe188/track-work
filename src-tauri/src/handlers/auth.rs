@@ -1,9 +1,12 @@
 use crate::state::AuthState;
-use reqwest::{blocking::Client, header::AUTHORIZATION};
 use serde_json::Value;
-use tauri::{State, Manager, Wry};
-use tauri_plugin_store::StoreExt;
 use std::sync::Arc;
+use tauri::{Manager, State, Wry};
+use tauri_plugin_http::reqwest::{
+    blocking::{Client, Response},
+    header::AUTHORIZATION,
+};
+use tauri_plugin_store::StoreExt;
 
 pub const API_URL: &str = "http://localhost:3000";
 pub const STORE_PATH: &str = "store.json";
@@ -35,7 +38,14 @@ pub fn check_auth(app: tauri::AppHandle, state: State<AuthState>) -> Result<Valu
         .send()
         .map_err(|e| format!("Failed to send request: {}", e))?;
 
-    handle_auth_response(response)
+    if response.status().is_success() {
+        let json: Value = response
+            .json()
+            .map_err(|e| format!("Failed to parse JSON: {}", e))?;
+        Ok(json["user"].clone())
+    } else {
+        Err(format!("Auth check failed: {}", response.status()))
+    }
 }
 
 #[tauri::command]
@@ -83,7 +93,11 @@ pub fn get_token(app: &tauri::AppHandle, state: &State<AuthState>) -> Result<Str
     }
 }
 
-fn save_token(app: &tauri::AppHandle, state: &State<AuthState>, json: &Value) -> Result<(), String> {
+fn save_token(
+    app: &tauri::AppHandle,
+    state: &State<AuthState>,
+    json: &Value,
+) -> Result<(), String> {
     let token = json["access_token"]
         .as_str()
         .ok_or("No token in response")?
@@ -96,14 +110,4 @@ fn save_token(app: &tauri::AppHandle, state: &State<AuthState>, json: &Value) ->
         store.set("token", token);
     }
     Ok(())
-}
-
-fn handle_auth_response(response: reqwest::blocking::Response) -> Result<Value, String> {
-    if response.status().is_success() {
-        response
-            .json()
-            .map_err(|e| format!("Failed to parse JSON: {}", e))
-    } else {
-        Err(format!("Auth check failed: {}", response.status()))
-    }
 }
